@@ -12,7 +12,7 @@ UWtotal=0; MSUtotal=0
 #loop for times
 for (i in 1:length(times)){
   curscore=score[score$time==times[i],]
-  for (j in 1:nrow(temp)){
+  for (j in 1:nrow(curscore)){
     #add scores to appropriate team's total with if else statement
     if (curscore$team[j]=="UW"){
       UWtotal=UWtotal+curscore$score[j]
@@ -23,3 +23,11 @@ for (i in 1:length(times)){
   total$UW[i]=UWtotal
   total$MSU[i]=MSUtotal
   }
+
+#start data frame with a time of zero
+total=rbind(c(0,0,0), total)
+#make plot for scores over time
+plot(x=total$time, y=total$UW, type="line", col="purple", lwd=2,
+     xlab="Time", ylab="Total Score", ylim=c(0,50), main="UW vs MSU Game")
+lines(x=total$time, y=total$MSU, type="l", col="green", lwd=2)
+legend("topleft", legend=c("MSU", "UW"), col=c("green", "purple"), lty=1)
