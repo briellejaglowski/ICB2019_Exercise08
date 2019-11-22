@@ -31,3 +31,22 @@ plot(x=total$time, y=total$UW, type="line", col="purple", lwd=2,
      xlab="Time", ylab="Total Score", ylim=c(0,50), main="UW vs MSU Game")
 lines(x=total$time, y=total$MSU, type="l", col="green", lwd=2)
 legend("topleft", legend=c("MSU", "UW"), col=c("green", "purple"), lty=1)
+
+
+#2
+game=function(){
+  number=sample(1:100, 1) #sample size one to 100
+  guess=readline(prompt="Guess a number between 1 and 100: ")
+  while (guess !=number){
+    #if else loop for higher or lower numbers
+    if(guess<number){
+      cat("higher")
+      guess=readline(prompt="Guess again: ")
+    }else{
+      cat("lower")
+      guess=readline(prompt="Guess again: ")
+    }
+  } 
+  cat(paste("Correct!"))
+}
+game()
